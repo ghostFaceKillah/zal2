@@ -40,9 +40,9 @@ procedure get_rules(var dictionary:adress_book);
     end;
   end;
 
-function changer(const word_in:string; dictionary:adress_book ):string;
+function changer(const word_in:ansistring; dictionary:adress_book ):ansistring;
   var
-    word_out : string;
+    word_out : ansistring;
     i : integer;
   begin
     word_out := '';
@@ -51,6 +51,7 @@ function changer(const word_in:string; dictionary:adress_book ):string;
         word_out := concat( word_out, word_in[i] )
       else
         word_out := concat( word_out, dictionary[word_in[i]]^ );
+     //potential inefficency
     changer := word_out;
   end;
 
@@ -88,7 +89,7 @@ procedure write_fixed_text( fixed_text:lines );
     end;
   end;
 
-procedure write_output(const in_str:string; dictionary:adress_book);
+procedure write_output(const in_str:ansistring; dictionary:adress_book);
   var
     i : integer;
   begin
@@ -100,7 +101,7 @@ procedure write_output(const in_str:string; dictionary:adress_book);
 var
   iter_num, k : integer;
   first_dictionary, second_dictionary : adress_book;
-  axiom : string;
+  axiom : ansistring;
   prefix, sufix : lines;
 
 begin

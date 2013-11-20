@@ -9,14 +9,6 @@ type
     next : lines;
   end;
 
-function is_empty(s:string):boolean;
-  begin 
-    if length(s) = 0 then
-      is_empty := true
-    else
-      is_empty := false;
-  end;
-
 procedure init_adress_book(var dictionary:adress_book);
   var
     i:char;

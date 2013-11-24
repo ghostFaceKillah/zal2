@@ -1,8 +1,12 @@
 program niceParser;
 
+const
+  FIRST_VIABLE_CHAR = '!';
+  LAST_VIABLE_CHAR = '~';
+
 type
   adress = ^string;
-  adress_book = array['!'..'~'] of adress;
+  adress_book = array[FIRST_VIABLE_CHAR..LAST_VIABLE_CHAR] of adress;
   lines = ^element;
   element = record
     value : string;
@@ -21,7 +25,7 @@ procedure init_adress_book(var dictionary:adress_book);
   var
     i:char;
   begin
-    for i := '!' to '~' do begin
+    for i := FIRST_VIABLE_CHAR to  LAST_VIABLE_CHAR do begin
       dictionary[i] := Nil;
     end;
   end;

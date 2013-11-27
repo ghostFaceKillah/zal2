@@ -40,7 +40,7 @@ function changer(const word_in:ansistring;
                    const dictionary:adress_book):ansistring;
   var
     word_out : ansistring;
-    i : integer;
+    i : longint;
   begin
     word_out := '';
     for i := 1 to length(word_in) do
@@ -89,7 +89,7 @@ procedure write_fixed_text(fixed_text:lines);
 
 procedure write_output(const in_str:ansistring;const dictionary:adress_book);
   var
-    i : integer;
+    i : longint;
   begin
     for i := 1 to length(in_str) do
       if dictionary[in_str[i]] <> Nil then
@@ -97,7 +97,7 @@ procedure write_output(const in_str:ansistring;const dictionary:adress_book);
   end;
 
 var
-  iter_num, k : integer;
+  iter_num, k : longint;
   first_dictionary, second_dictionary : adress_book;
   axiom : ansistring;
   prefix, sufix : lines;

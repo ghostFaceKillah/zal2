@@ -17,7 +17,7 @@ procedure init_adress_book(var dictionary:adress_book);
   var
     i:char;
   begin
-    for i := FIRST_VIABLE_CHAR to  LAST_VIABLE_CHAR do begin
+    for i := FIRST_VIABLE_CHAR to LAST_VIABLE_CHAR do begin
       dictionary[i] := Nil;
     end;
   end;
@@ -36,7 +36,8 @@ procedure get_rules(var dictionary:adress_book);
     end;
   end;
 
-function changer(const word_in:ansistring; dictionary:adress_book ):ansistring;
+function changer(const word_in:ansistring;
+                   const dictionary:adress_book):ansistring;
   var
     word_out : ansistring;
     i : integer;
@@ -44,14 +45,15 @@ function changer(const word_in:ansistring; dictionary:adress_book ):ansistring;
     word_out := '';
     for i := 1 to length(word_in) do
       if dictionary[word_in[i]] = Nil then
-        word_out := concat( word_out, word_in[i] )
+        word_out := concat(word_out, word_in[i])
       else
-        word_out := concat( word_out, dictionary[word_in[i]]^ );
-     //potential inefficency
+        word_out := concat(word_out, dictionary[word_in[i]]^);
+        // very, very, very bad inefficiency
+        // we would need to rewrite this if we want it to be efficient
     changer := word_out;
   end;
 
-function get_fixed_text() : lines;
+function get_fixed_text():lines;
   var 
     start : lines;
     current : lines;
@@ -77,7 +79,7 @@ function get_fixed_text() : lines;
     get_fixed_text := start;
   end;
 
-procedure write_fixed_text( fixed_text:lines );
+procedure write_fixed_text(fixed_text:lines);
   begin
     while fixed_text <> Nil do begin
       writeln(fixed_text^.value);
@@ -85,7 +87,7 @@ procedure write_fixed_text( fixed_text:lines );
     end;
   end;
 
-procedure write_output(const in_str:ansistring; dictionary:adress_book);
+procedure write_output(const in_str:ansistring;const dictionary:adress_book);
   var
     i : integer;
   begin
@@ -110,7 +112,7 @@ begin
   get_rules(second_dictionary);
   sufix := get_fixed_text();
   for k := 1 to iter_num do
-    axiom := changer( axiom, first_dictionary );
+    axiom := changer(axiom, first_dictionary);
   write_fixed_text(prefix);
   write_output(axiom, second_dictionary);
   write_fixed_text(sufix);
